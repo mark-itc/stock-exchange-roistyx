@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="script/app.js"></script>    
+        <title>Document</title>
+        <!-- CSS only -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+            crossorigin="anonymous">
+            <link rel="stylesheet" href="styles/style.css">
+    </head>
+    <body>
+        <div class="container  vh-100 position-relative">
+            <div class="row ">
+                <div class="col">
+                    <div class="grid-element">
+                        <form class="d-flex " id="search-form" role="search">
+                            <div class="form-floating w-100" >
+                                <input type="text" class="form-control" id="floatingInput" >
+                                <label for="floatingInput"></label>
+                                <div id="results-container" class="d-flex flex-column ms-3 mt-3" style="position:absolute">
+                                </div>
+             
+                            </div>
+                             <button class="btn btn-outline-success" type="submit">Search</button>
+                             <div id="spinner" class="spinner-border rounded-circle" style="display:none" role="status"></div>
+                         </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
