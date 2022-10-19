@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="module" src="script/company.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>    
+        <title>Document</title>
+        <!-- CSS only -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+            crossorigin="anonymous">
+            <link rel="stylesheet" href="styles/style.css">
+    </head>
+    <body>
+        
+        <div class="container  vh-100 position-relative">
+            <div class="row ">
+                <div class="col">
+                    <div class="grid-element">
+                        <div class="card mb-3">
+                            <div class="card-body">
+                                <img class="mx-auto" src="" id="company-logo" alt="Card image cap">
+                                <span class="h1" id="company-name"></span>
+                                
+                                <span class="h2" id="stock-price"></span>
+                                <span class="h3" id="changes-percentage"></span>
+                              <!-- <h5 class="card-title">Card title</h5> -->
+                              <div class="card-text" id="company-description">
+                                
+                            </div>
+                            <div>
+                                <canvas id="myChart" style="width:100%;max-width:700px"></canvas>
+                            </div>
+                            <div><a href="https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/historical-price-full/spy
+                                ?serietype=line">History</a></div>
+                          </div>
+                        <div id="spinner" class="spinner-border"></div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <!-- <script>
+            import Company from '../script/company.js'
+            var xyValues = [
+              {x:50, y:7},
+              {x:60, y:8},
+              {x:70, y:8},
+              {x:80, y:9},
+              {x:90, y:9},
+              {x:100, y:9},
+              {x:110, y:10},
+              {x:120, y:11},
+              {x:130, y:14},
+              {x:140, y:14},
+              {x:150, y:15}
+            ];
+
+
+            
+            </script>        -->
+    </body>
+</html>

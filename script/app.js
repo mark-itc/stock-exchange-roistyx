@@ -25,14 +25,16 @@ class StockSearcher {
             this.setIsLoading(true);
 
             const response = await fetch(url);
+            console.log(url)
             const getResults = await response.json();
-
+            
             return(getResults);
 
         } catch(error) {
             return[];
         } finally {
             this.setIsLoading(false); 
+            
         }   
     } 
 
@@ -65,7 +67,7 @@ class Stock {
         node.setAttribute('href', this.http+this.symbol);
         node.appendChild(textNode)
         resultsContainer.appendChild(node);
-
+        
         return 
     }    
 }
@@ -73,7 +75,6 @@ class Stock {
 let stockSearcher = null;
 window.onload = () => {
     stockSearcher = new StockSearcher();
-    const searchForm = document.getElementById('search-form');
 }
 
 
