@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="script/app.js"></script>    
+        <script type="module" src="script/app.js"></script>    
         <title>Document</title>
         <!-- CSS only -->
         <link
@@ -23,10 +23,7 @@
                             <div class="form-floating w-100" >
                                 <input type="text" class="form-control" id="floatingInput" >
                                 <label for="floatingInput"></label>
-                                <div id="results-container" class="d-flex flex-column ms-3 mt-3" style="position:absolute">
-                                    NASDAQ
-                                </div>
-             
+                                <div id="results-container" class="d-flex flex-column ms-3 mt-3" style="position:absolute"></div>
                             </div>
                              <button class="btn btn-outline-success" type="submit">Search</button>
                              <div id="spinner" class="spinner-border rounded-circle" style="display:none" role="status"></div>
@@ -35,5 +32,6 @@
                 </div>
             </div>
         </div>
+        
     </body>
 </html>

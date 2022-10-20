@@ -1,3 +1,4 @@
+import {Company} from './company.js';
 class StockSearcher {
     constructor() {
         this.searchQuery = "";
@@ -9,7 +10,7 @@ class StockSearcher {
             e.preventDefault();
             this.runSearch();
         });
-    }
+    };
 
     setIsLoading(isLoading) {
         const spinner = document.getElementById('spinner').style
@@ -20,27 +21,24 @@ class StockSearcher {
 
     async getStocks() {
         try {
+            this.setIsLoading(true);
             const url = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/search?query=${this.searchQuery}&limit=${this.searchLimit}&exchange=${this.marketName}`;
 
-            this.setIsLoading(true);
-
-            const response = await fetch(url);
-            console.log(url)
+            const response = await fetch(url);            
             const getResults = await response.json();
             
             return(getResults);
 
         } catch(error) {
-            return[];
+
+            return error;
         } finally {
+
             this.setIsLoading(false); 
-            
-        }   
-    } 
+        };   
+    };
 
     async runSearch() {
-        const resultsContainer = document.getElementById('results-container');
-        resultsContainer.innerHTML = '';
         const results = await this.getStocks();
         const stocksObjects =[];  
         this.searchQuery = document.getElementById('floatingInput').value;  
@@ -48,8 +46,6 @@ class StockSearcher {
             const stock = new Stock(item);
 
             stocksObjects.push(stock);
-            
-            return stock.createStockEntry(resultsContainer);
         });
     };
 };
@@ -59,17 +55,37 @@ class Stock {
         this.symbol = stockObject.symbol;
         this.name = stockObject.name;
         this.http = "company.html?symbol=";
+        this.profile = this.companyProfile();
+        
+             
     };
 
-    createStockEntry(resultsContainer) {  
-        const node = document.createElement('a');
-        const textNode = document.createTextNode(this.symbol + ", "+ this.name)
-        node.setAttribute('href', this.http+this.symbol);
-        node.appendChild(textNode)
-        resultsContainer.appendChild(node);
+    async companyProfile() {
+        const company = new Company(this.symbol);
+        const profile = await company.getCompanyProfile();
+
+        const {
+            image,
+            companyName,
+            symbol,
+            changesPercentage,
+        } = profile;
+
+        const resultsContainer = document.getElementById('results-container');
+        const div = document.createElement('div');
+        div.innerHTML = `
+            <ul class="list-group list-group-horizontal">
+                <li class="list-group-item"><image src="${image}" ></li>
+                <li class="list-group-item">
+                    <a href="${this.http+this.symbol}">
+                    ${companyName}</a>
+                </li>
+                <li class="list-group-item">${symbol}</li>
+                <li class="list-group-item">${changesPercentage}%</li>
+            </ul>`
         
-        return 
-    }    
+        return  resultsContainer.appendChild(div)
+    }      
 }
 
 let stockSearcher = null;
@@ -78,4 +94,7 @@ window.onload = () => {
 }
 
 
+
+
+  
     

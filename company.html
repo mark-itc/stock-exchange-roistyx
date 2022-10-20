@@ -7,18 +7,9 @@
         <script type="module" src="script/company.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>    
         <script type="module">
-            import CompanyChart from '../script/company.js'
-            urlParam()
-            var companyUrl = null
-            function urlParam() {
-                companyUrl = window.location.search;
-                const urlParams = new URLSearchParams(companyUrl);
-                const symbol = urlParams.get('symbol')
-                console.log(symbol)
-                return new CompanyChart(symbol)
-            }
-            // const chart = new CompanyChart("caca") 
-            // console.log(chart)
+            import {CompanyChart} from '../script/company.js'
+            new CompanyChart
+            
         </script> 
         <title>Document</title>
         <!-- CSS only -->
@@ -42,17 +33,17 @@
                                 <span class="h1" id="company-name"></span>
                                 
                                 <span class="h2" id="stock-price"></span>
-                                <span class="h3" id="changes-percentage"></span>
-                              <h5 class="card-title" id="website"></h5>
+                                <span class="h3" id="changes-percentage"></span>                              
                               <div class="card-text" id="company-description">
                                 
                             </div>
                             <div id="my-div" ></div>
                             <div>
-                                <canvas id="my-chart" ></canvas>
+                                <canvas id="my-chart" style="width:100%;max-width:700px"></canvas>
                             </div>
-                            <div><a href="https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/historical-price-full/spy
-                                ?serietype=line">History</a></div>
+                            <div>
+                                <h5 class="card-title" id="website"></h5>
+                            </div>
                           </div>
                         <div id="spinner" class="spinner-border"></div>
                     </div>
