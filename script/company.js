@@ -8,15 +8,15 @@ export function searchParam() {
 export class Company {
     constructor (symbol) {
         this.companySymbol = symbol;
-        this.searchUrl = "https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/company/profile/";
+        this.searchUrl = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/company/profile/${this.companySymbol}`;
         this.CompanyProfile = this.getCompanyProfile()     
     }  
        
-    async getCompanyProfile(){
+    async getCompanyProfile(url){
 
         try {
             this.setIsLoading(true);
-            const url = this.searchUrl+this.companySymbol;
+            const url = this.searchUrl
 
             const response = await fetch(url);
             const getResults = await response.json();
@@ -52,6 +52,7 @@ export class CompanyObject {
         this.changesPercentage = companyObject.changesPercentage;
         this.website = companyObject.website; 
         this.printIt = this.printMe();
+        console.log(companyObject)
         
     }
 

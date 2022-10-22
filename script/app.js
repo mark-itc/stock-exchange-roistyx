@@ -84,13 +84,63 @@ class Stock {
                 <li class="list-group-item">${changesPercentage}%</li>
             </ul>`
         
-        return  resultsContainer.appendChild(div)
-    }      
+        return  resultsContainer.appendChild(div);
+    };     
+};
+
+class Marquee {
+    constructor() {
+        this.url = "https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=79407a4b5093d8ab0b88ffb381a79d19";
+        this.ticker = document.getElementById('marquee');
+        this.tickerObject = this.getTicker();
+        this.marqueeItemLimit = 10;
+    }
+
+    async getTicker() {
+        
+        const response = await fetch(this.url);            
+        const getResults = await response.json();
+        const array = await getResults.map((index) => {
+            return {
+                index  }
+        })
+
+        
+        
+        array.forEach((element) => printMe(element));
+       
+
+        console.log( array)
+
+        
+        
+             
+        // this.ticker.innerHTML = `<span >${newArray}</span>`
+        
+        
+        // symbol.forEach(() => array.push(symbol[1]+" "+change[1]));
+        // change.forEach((element) => console.log(element));
+        
+        
+        // document.write(JSON.stringify(merge(r)));
+
+        function printMe(element) {
+            const {
+                caca,
+            } = element;
+            console.log(caca)
+        } 
+    };
+
+    
+
 }
 
 let stockSearcher = null;
+let marquee = null;
 window.onload = () => {
     stockSearcher = new StockSearcher();
+    marquee = new Marquee();
 }
 
 
