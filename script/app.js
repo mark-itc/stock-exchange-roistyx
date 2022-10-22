@@ -1,10 +1,11 @@
 import {Company} from './company.js';
+import {Marquee} from './Marquee.js';
 class StockSearcher {
     constructor() {
         this.searchQuery = "";
         this.searchLimit = 10;
         this.marketName = "NASDAQ";
-
+        
         const searchForm = document.getElementById('search-form');
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
@@ -13,7 +14,7 @@ class StockSearcher {
     };
 
     setIsLoading(isLoading) {
-        const spinner = document.getElementById('spinner').style
+        const spinner = document.getElementById('spinner').style;
         if (isLoading) {
             return  spinner.display = "block" ;
         } else spinner.display = "none";
@@ -49,15 +50,12 @@ class StockSearcher {
         });
     };
 };
-
 class Stock {
     constructor(stockObject) {
         this.symbol = stockObject.symbol;
         this.name = stockObject.name;
         this.http = "company.html?symbol=";
-        this.profile = this.companyProfile();
-        
-             
+        this.profile = this.companyProfile();       
     };
 
     async companyProfile() {
@@ -74,7 +72,8 @@ class Stock {
         const resultsContainer = document.getElementById('results-container');
         const div = document.createElement('div');
         div.innerHTML = `
-            <ul class="list-group list-group-horizontal">
+            <div class="border-bottom">
+            <ul class="list-group list-group-flush list-group-horizontal">
                 <li class="list-group-item"><image src="${image}" ></li>
                 <li class="list-group-item">
                     <a href="${this.http+this.symbol}">
@@ -82,66 +81,20 @@ class Stock {
                 </li>
                 <li class="list-group-item">${symbol}</li>
                 <li class="list-group-item">${changesPercentage}%</li>
-            </ul>`
+            </ul>
+             </div>`
         
         return  resultsContainer.appendChild(div);
     };     
 };
 
-class Marquee {
-    constructor() {
-        this.url = "https://financialmodelingprep.com/api/v3/stock_market/gainers?apikey=79407a4b5093d8ab0b88ffb381a79d19";
-        this.ticker = document.getElementById('marquee');
-        this.tickerObject = this.getTicker();
-        this.marqueeItemLimit = 10;
-    }
 
-    async getTicker() {
-        
-        const response = await fetch(this.url);            
-        const getResults = await response.json();
-        const array = await getResults.map((index) => {
-            return {
-                index  }
-        })
-
-        
-        
-        array.forEach((element) => printMe(element));
-       
-
-        console.log( array)
-
-        
-        
-             
-        // this.ticker.innerHTML = `<span >${newArray}</span>`
-        
-        
-        // symbol.forEach(() => array.push(symbol[1]+" "+change[1]));
-        // change.forEach((element) => console.log(element));
-        
-        
-        // document.write(JSON.stringify(merge(r)));
-
-        function printMe(element) {
-            const {
-                caca,
-            } = element;
-            console.log(caca)
-        } 
-    };
-
-    
-
-}
-
-let stockSearcher = null;
 let marquee = null;
+
 window.onload = () => {
-    stockSearcher = new StockSearcher();
     marquee = new Marquee();
-}
+    return new StockSearcher();
+    };
 
 
 

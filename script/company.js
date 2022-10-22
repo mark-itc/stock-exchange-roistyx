@@ -51,9 +51,7 @@ export class CompanyObject {
         this.price = companyObject.price;
         this.changesPercentage = companyObject.changesPercentage;
         this.website = companyObject.website; 
-        this.printIt = this.printMe();
-        console.log(companyObject)
-        
+        this.printIt = this.printMe();        
     }
 
     companyProfile() {
