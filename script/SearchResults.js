@@ -54,12 +54,12 @@ class Stock {
         const div = document.createElement('div');
         div.innerHTML = `
             <ul class="list-group list-group-horizontal border-bottom pt-2">
-                <li class="list-group-item"><image src="${image}" ></li>
+                <li class="list-group-item"><image id="image" src="${image}" ></li>
                 <li class="list-group-item">
-                    <a href="${http+symbol}">
+                    <a class="bg-secondary p-2 text-decoration-none link-light" href="${http+symbol}">
                     ${companyName}</a>
                 </li>
-                <li class="list-group-item">${symbol}</li>
+                <li class="list-group-item "><span class="bg-primary text-white p-2">${symbol}</span></li>
                 <li class="list-group-item">${changesPercentage}%</li>
             </ul>`;
         
