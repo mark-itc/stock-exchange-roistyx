@@ -29,11 +29,12 @@ body {
 
 #parent-marquee{
 	border: 1px solid;
-    position: fixed;
     z-index: 0;
 	width: 100%;
 	background-color: white;
     border: none;
+    float: left;
+    overflow: hidden
 	}
 
 #marquee{
@@ -42,4 +43,6 @@ body {
 	white-space: nowrap;
 	clear: both;
 	float: left;
+    overflow: hidden
+    
 	}

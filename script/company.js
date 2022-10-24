@@ -1,18 +1,19 @@
-export function searchParam() {
+function searchParam() {
     let companyUrl = null;
     companyUrl = window.location.search;
     const urlParams = new URLSearchParams(companyUrl);
-    const symbol = urlParams.get('symbol'); 
+    const symbol = urlParams.get('symbol');
+
     return symbol;       
 };
-export class Company {
+class Company {
     constructor (symbol) {
         this.companySymbol = symbol;
         this.searchUrl = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/company/profile/${this.companySymbol}`;
-        this.CompanyProfile = this.getCompanyProfile()     
-    }  
+        this.CompanyProfile = this.getCompanyProfile();   
+    };  
        
-    async getCompanyProfile(url){
+    async getCompanyProfile(){
 
         try {
             this.setIsLoading(true);
@@ -22,12 +23,13 @@ export class Company {
             const getResults = await response.json();
             const companyObject = new CompanyObject(
                 getResults.profile, 
-                this.companySymbol
+                this.companySymbol,
                 );
     
             return companyObject;     
         
          } catch(error) {
+
             return error;
 
         } finally {
@@ -42,7 +44,7 @@ export class Company {
         } else spinner.display = "none";
     };
 };
-export class CompanyObject {
+class CompanyObject {
     constructor (companyObject, companySymbol) {
         this.companyName = companyObject.companyName;
         this.description = companyObject.description;
@@ -51,42 +53,30 @@ export class CompanyObject {
         this.price = companyObject.price;
         this.changesPercentage = companyObject.changesPercentage;
         this.website = companyObject.website; 
-        this.printIt = this.printMe();        
-    }
-
-    companyProfile() {
-       const inLineProfile = {
-            logo: this.image,
-            name: this.companyName,
-            symbol: this.symbol, 
-            change: this.changesPercentage,
-        } 
-
-        return inLineProfile
-    }
+        this.printIt = this.print();        
+    };
     
-    printMe() {
+    print() {
         if (searchParam()!= null) {
             document.getElementById('company-logo').src = this.image;
             document.getElementById('company-name').innerHTML = this.companyName;
             document.getElementById('company-description').innerHTML = this.description;
-            document.getElementById('changes-percentage').innerHTML = this.changesPercentage;
-            document.getElementById('stock-price').innerHTML = this.price;
-            document.getElementById('website').innerHTML = `<a href="${this.website}">${this.companyName}</a>`
-        }  
-    }
-}
-
+            document.getElementById('changes-percentage').innerHTML = "Price Change: "+this.changesPercentage+"%";
+            document.getElementById('stock-price').innerHTML = "Last Price: $"+this.price;
+            document.getElementById('website').innerHTML = `<a href="${this.website}">${this.companyName}</a>`;
+        };  
+    };
+};
 export class CompanyChart {
     constructor() {
         this.symbol = searchParam();
-        this.url = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/historical-price-full/${this.symbol}?serietype=line`
+        this.url = `https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/historical-price-full/${this.symbol}?serietype=line`;
         this.chartObject = this.getCompanyChart(); 
     }
 
     async getCompanyChart(){
 
-        try {const url = this.url
+        try {const url = this.url;
 
             this.setIsLoading(true);
     
@@ -130,18 +120,16 @@ export class CompanyChart {
 
         } finally {
             this.setIsLoading(false);
-        }
-    } 
+        };
+    };
 
     setIsLoading(isLoading) {
-        const spinner = document.getElementById('spinner').style
+        const spinner = document.getElementById('spinner').style;
         if (isLoading) {
             return  spinner.display = "block" ;
         } else spinner.display = "none";
     };
-}
-
-    
+};
 
 window.onload = () => {
     searchParam();

@@ -1,29 +1,31 @@
-export class Marquee {
+class Marquee {
+
     constructor() {
         this.getMarquee = this.getMarquee();
     }
 
     getMarquee() {
+
         const api_url = "https://stock-exchange-dot-full-stack-course-services.ew.r.appspot.com/api/v3/stock-screener?exchange=NASDAQ&limit=$%7Blimit%7D";
         const marquee = document.getElementById("marquee");
         
         let elementWidth = marquee.offsetWidth;
         let parentWidth = marquee.parentElement.offsetWidth;
-        let flag = 2;
+        let flag = 3;
         
         setInterval(() => {
             marquee.style.marginLeft = --flag + "px";
             if (elementWidth == -flag) {
                 flag = parentWidth;
             }
-        }, 20);
+        }, 10);
         
         setInterval(getMarqueeData, 10000);
 
         async function getMarqueeData() {
+
             const response = await fetch(api_url);
             var getResults = await response.json();
-            console.log("I'm refreshed");
 
             for (let i = 0; i < 30; i++) {
             let results = [
