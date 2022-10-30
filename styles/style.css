@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+.grid-element {
+    margin-top: 100px;
+    width: 75%; 
+}
+
+#image {
+width:50px
+}
+
+.list-group-item {
+    border: none;
+}
+
+#parent-marquee{
+	border: 1px solid;
+    z-index: 0;
+	width: 100%;
+	background-color: white;
+    border: none;
+    float: left;
+    overflow: hidden
+	}
+
+#marquee{
+	color: black;
+	font-weight: bold;
+	white-space: nowrap;
+	clear: both;
+	float: left;
+    overflow: hidden
+    
+	}
